@@ -35,6 +35,15 @@ export default function MermaidDiagram({ code }) {
           svgEl.style.maxWidth = '100%';
           svgEl.style.height = 'auto';
           svgEl.style.display = 'block';
+
+          const isTextTarget = (el) =>
+            el && el !== svgEl && !!el.closest(
+              'text, foreignObject, .nodeLabel, .edgeLabel, .label'
+            );
+          const onMouseDown = (e) => {
+            if (isTextTarget(e.target)) e.stopPropagation();
+          };
+          svgEl.addEventListener('mousedown', onMouseDown);
         }
         setError(null);
       } catch (err) {

@@ -19,7 +19,7 @@ flowchart LR
     CommandRegistrarAvaliacaoDaConcessao --> AggreagateRegistroDeAvaliacaoDaConcessao["Registro de Avaliação da Concessão"]
     AggreagateRegistroDeAvaliacaoDaConcessao --> DomainEventConcessaoAvaliada(["Concessão Avaliada - resultado: classificação de privaciade com dado pessoal, sem dado pessoal ou não classificada; origem: solicitação de acesso ou reclassificação motor<br>"])
     DomainEventConcessaoAvaliada -- com dado pessoal --> PolicyAtribuirConcessaoAAtividadeDeTratamento>"Atribuir Concessão à Atividade de Tratamento"]
-    DomainEventConcessaoAvaliada -- evidência (todos os desfechos) --> ReadModelTrilhaDeEvidencias(["Trilha de Evidências DataMesh"])
+    DomainEventConcessaoAvaliada -- evidência (todos os desfechos) --> ReadModelTrilhaDeAvaliacoesDeConformidade(["Trilha de Avaliações de Conformidade (Data Product - Data Mesh)"])
     PolicyAtribuirConcessaoAAtividadeDeTratamento -. consulta .-> ReadModelIndiceDeAtividadesDeTratamento["Índice de Atividades de Tratamento"]
     PolicyAtribuirConcessaoAAtividadeDeTratamento -- atividade inexistente --> CommandRegistrarAtividadeDeTratamento["Registrar Atividade de Tratamento"]
     PolicyAtribuirConcessaoAAtividadeDeTratamento -- atividade existente --> CommandIncluirTabelaNaAtividadeDeTratamento["Incluir Tabela na Atividade de Tratamento"]
@@ -40,7 +40,7 @@ flowchart LR
     PolicyAvaliarNecessidadeDeRevisaoDaBaseLegal --> CommandRegistrarAvaliacaoDeBaseLegal["Registrar Avaliação de Base Legal"] & ReadModelListaFixaCategoriasDeDadoCriticas["Lista fixa Categorias de Dado Críticas"]
     CommandRegistrarAvaliacaoDeBaseLegal --> AggreagateRegistroDeAvaliacaoDeBaseLegal["Registro de Avaliação de Base Legal"]
     AggreagateRegistroDeAvaliacaoDeBaseLegal --> DomainEventBaseLegalDaAtividadeAvaliada(["Base Legal da Atividade Avaliada"])
-    DomainEventBaseLegalDaAtividadeAvaliada -- evidência --> ReadModelTrilhaDeEvidencias
+    DomainEventBaseLegalDaAtividadeAvaliada -- evidência --> ReadModelTrilhaDeAvaliacoesDeConformidade
     DomainEventBaseLegalDaAtividadeAvaliada -- alta confiança e sem categorias críticas --> CommandConcluirAtividadeComBaseLegalNoOneTrust["Concluir Atividade com Base Legal no OneTrust"]
     DomainEventBaseLegalDaAtividadeAvaliada -- baixa confiança ou categorias críticas --> CommandEncaminharAtividadeParaRevisaoDePEDNoOneTrust["Encaminhar Atividade para Revisão de PED no OneTrust"]
     CommandConcluirAtividadeComBaseLegalNoOneTrust --> DomainEventAtividadeDeTratamentoConcluida(["Atividade de Tratamento Concluída"])
@@ -51,7 +51,7 @@ flowchart LR
     DomainEventAtividadeDeTratamentoEncaminhadaParaRevisao --> ReadModelFilaDeRevisaoDePEDOneTrust(["Fila de Revisão de PED OneTrust"])
     ReadModelFilaDeRevisaoDePEDOneTrust --> ActorAnalistaDePrivacidadePED(("Analista de Privacidade PED"))
     ReadModelAtividadeDeTratamentoOneTrustRoPA --> ActorAnalistaDePrivacidadePED
-    ReadModelTrilhaDeEvidencias --> ActorEncarregadoDPO(("Encarregado DPO"))
+    ReadModelTrilhaDeAvaliacoesDeConformidade --> ActorEncarregadoDPO(("Encarregado DPO"))
     DomainEventConcessaoAvaliada --> n1["Registro de Avaliação de Concessão - modelo: grupo, tabela, finalidade, origem (matrix ou motor), classificação de privacidade, categorias de dado, classificado pelo motor ou curador, id versão da classificação, id evento de classificação<br>"]
 
     n1@{ shape: doc}
@@ -67,7 +67,7 @@ flowchart LR
      AggreagateRegistroDeAvaliacaoDaConcessao:::Aggreagate
      DomainEventConcessaoAvaliada:::DomainEvent
      PolicyAtribuirConcessaoAAtividadeDeTratamento:::Policy
-     ReadModelTrilhaDeEvidencias:::ReadModel
+     ReadModelTrilhaDeAvaliacoesDeConformidade:::ReadModel
      ReadModelIndiceDeAtividadesDeTratamento:::ReadModel
      CommandRegistrarAtividadeDeTratamento:::Command
      CommandIncluirTabelaNaAtividadeDeTratamento:::Command

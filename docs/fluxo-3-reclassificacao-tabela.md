@@ -19,7 +19,7 @@ flowchart LR
     PolicyAvaliarImpactoDaReclassificacao:::Policy --> CommandRegistrarAvaliacaoDaReclassificacao["Registrar Avaliação da Reclassificação"]:::Command
     CommandRegistrarAvaliacaoDaReclassificacao:::Command --> AggreagateRegistroDeAvaliacaoDaReclassificacao["Registro de Avaliação da Reclassificação"]:::Aggreagate
     AggreagateRegistroDeAvaliacaoDaReclassificacao:::Aggreagate --> DomainEventReclassificacaoAvaliada(["Reclassificação Avaliada - resultado: categorias alteradas, perdeu dado pessoal, passou a ter dado pessoal ou sem impacto (mesma versão-conteúdo da última avaliação)"]):::DomainEvent
-    DomainEventReclassificacaoAvaliada:::DomainEvent -- evidência (todos os desfechos) --> ReadModelTrilhaDeEvidencias(["Trilha de Evidências DataMesh"]):::ReadModel
+    DomainEventReclassificacaoAvaliada:::DomainEvent -- evidência (todos os desfechos) --> ReadModelTrilhaDeAvaliacoesDeConformidade(["Trilha de Avaliações de Conformidade (Data Product - Data Mesh)"]):::ReadModel
     DomainEventReclassificacaoAvaliada:::DomainEvent --> DocModeloRegistroDeAvaliacaoDeReclassificacao["Registro de Avaliação de Reclassificação - modelo: tabela, classificação de privacidade anterior e atual, categorias de dado, classificado pelo motor ou curador, id versão da classificação, id evento de classificação, resultado da avaliação, atividades de tratamento afetadas, concessões vigentes reinjetadas<br>"]
     DocModeloRegistroDeAvaliacaoDeReclassificacao@{ shape: doc}
     DocModeloRegistroDeAvaliacaoDeReclassificacao:::ReadModel
@@ -47,7 +47,7 @@ flowchart LR
     CommandEncaminharAtividadeParaRevisaoDePEDNoOneTrust:::Command --> DomainEventAtividadeDeTratamentoEncaminhadaParaRevisao(["Atividade de Tratamento Encaminhada para Revisão"]):::DomainEvent
     DomainEventAtividadeDeTratamentoEncaminhadaParaRevisao:::DomainEvent --> ReadModelFilaDeRevisaoDePEDOneTrust(["Fila de Revisão de PED OneTrust"]):::ReadModel
     ReadModelFilaDeRevisaoDePEDOneTrust:::ReadModel --> ActorAnalistaDePrivacidadePED(("Analista de Privacidade PED")):::Actor
-    ReadModelTrilhaDeEvidencias:::ReadModel --> ActorEncarregadoDPO(("Encarregado DPO")):::Actor
+    ReadModelTrilhaDeAvaliacoesDeConformidade:::ReadModel --> ActorEncarregadoDPO(("Encarregado DPO")):::Actor
 
     classDef Policy fill:#E1BEE7
     classDef Aggreagate fill:#FFD600

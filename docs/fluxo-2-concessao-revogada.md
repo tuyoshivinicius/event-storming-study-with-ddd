@@ -16,7 +16,7 @@ flowchart LR
     PolicyAvaliarImpactoDaRevogacao:::Policy --> CommandRegistrarAvaliacaoDaRevogacao["Registrar Avaliação da Revogação"]:::Command
     CommandRegistrarAvaliacaoDaRevogacao:::Command --> AggreagateRegistroDeAvaliacaoDaRevogacao["Registro de Avaliação da Revogação"]:::Aggreagate
     AggreagateRegistroDeAvaliacaoDaRevogacao:::Aggreagate --> DomainEventRevogacaoAvaliada(["Revogação Avaliada - resultado: vínculo localizado, sem vínculo em atividade ou concessão desconhecida"]):::DomainEvent
-    DomainEventRevogacaoAvaliada:::DomainEvent -- evidência (todos os desfechos) --> ReadModelTrilhaDeEvidencias(["Trilha de Evidências DataMesh"]):::ReadModel
+    DomainEventRevogacaoAvaliada:::DomainEvent -- evidência (todos os desfechos) --> ReadModelTrilhaDeAvaliacoesDeConformidade(["Trilha de Avaliações de Conformidade (Data Product - Data Mesh)"]):::ReadModel
     DomainEventRevogacaoAvaliada:::DomainEvent --> DocModeloRegistroDeAvaliacaoDeRevogacao["Registro de Avaliação de Revogação - modelo: grupo, tabela, finalidade, origem (matrix), resultado da avaliação, atividade de tratamento afetada<br>"]
     DocModeloRegistroDeAvaliacaoDeRevogacao@{ shape: doc}
     DocModeloRegistroDeAvaliacaoDeRevogacao:::ReadModel
@@ -35,7 +35,7 @@ flowchart LR
     CommandEncaminharAtividadeParaRevisaoDePEDNoOneTrust:::Command --> DomainEventAtividadeDeTratamentoEncaminhadaParaRevisao(["Atividade de Tratamento Encaminhada para Revisão"]):::DomainEvent
     DomainEventAtividadeDeTratamentoEncaminhadaParaRevisao:::DomainEvent --> ReadModelFilaDeRevisaoDePEDOneTrust(["Fila de Revisão de PED OneTrust"]):::ReadModel
     ReadModelFilaDeRevisaoDePEDOneTrust:::ReadModel --> ActorAnalistaDePrivacidadePED(("Analista de Privacidade PED")):::Actor
-    ReadModelTrilhaDeEvidencias:::ReadModel --> ActorEncarregadoDPO(("Encarregado DPO")):::Actor
+    ReadModelTrilhaDeAvaliacoesDeConformidade:::ReadModel --> ActorEncarregadoDPO(("Encarregado DPO")):::Actor
 
     classDef Policy fill:#E1BEE7
     classDef Aggreagate fill:#FFD600

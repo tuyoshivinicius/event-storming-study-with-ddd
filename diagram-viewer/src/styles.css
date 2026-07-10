@@ -223,3 +223,18 @@ kbd {
   width: 100% !important;
   height: 100% !important;
 }
+
+/* Permitir seleção de texto nos rótulos do Mermaid.
+   O react-zoom-pan-pinch aplica user-select: none no wrapper;
+   aqui reabilitamos apenas para texto, mantendo o pan no restante do SVG. */
+.mermaid-container svg text,
+.mermaid-container svg foreignObject,
+.mermaid-container svg .nodeLabel,
+.mermaid-container svg .edgeLabel,
+.mermaid-container svg .label {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  cursor: text;
+}
