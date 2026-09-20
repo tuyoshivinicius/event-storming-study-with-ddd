@@ -13,3 +13,21 @@ ID;Nome;Wave
 4;Matrix Notifica Curador Revisões Pendentes;4
 5;Matrix Encerra Campanha Periodica Automaticamente;5
 6;Gov Acessa Analitco de Campanhas de Revisão;6
+
+FEAT;COD;componente;historia;sp;dep
+1;J1;JONES;Modelar e Provisionar Tabelas do microserviço;3;
+1;J2;JONES;Provisionar INFRA Microserviço - cluster, asg, alb e filas;3;
+1;J3;JONES;Provisionar INFRA API Gateway - gateway e customdomain;3;
+1;T1;TRINITY;Alterar Consultar Concessões add listagem com paginação - api e usecase;3;
+1;J4;JONES;Criar API Criar Campanha - service api-rest, usecase, lambda disparo e scheduler;5;J1,J2,J3
+1;J5;JONES;Criar Processar Escopo da Campanha de Revisao, service consumer, usecase;5;J1,J2,T1
+;J6;JONES;Criar Consultar Campanhas do Curador - api e usecase;3;J1
+;J7;JONES;Criar Consultar Revisões da Campanha do Curador- api e usecase;3;J1
+;J8;JONES;Criar Consultar Issues da Revisão - api e usecase;3;J1
+;;BFF;;;
+;J9;JONES;Criar Salvar Revisão da Campanha - api e usecase;5;J5
+;J10;JONES;Criar Processar Issue da Revisão pela Concessão Revogada - service consumer e usecase;3;J5
+;M1;MOUSE;Criar Notificação de Revisões Pendentes para o Grupo Curador - service consumer, sqs;5;
+;J11;JONES;Criar Disparar Notificações de Revisões Pendentes;3;M1
+;;JONES;Criar Encerrar Campanha de Revisão - api e usecase;3;J5
+;;JONES;Processar Encerramento de Campanha - service consumer e usecase;5;
